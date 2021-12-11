@@ -65,6 +65,7 @@ public class Projeto {
   public void setPublished(boolean published){
     this.published = published;
   }
+
   //END PUBLISHED
 
   @Override
