@@ -27,5 +27,44 @@ public class Projeto {
   private boolean published;
 
   public Projeto() {}
-  
+
+  public Projeto(String name, String description, boolean published){
+    this.name = name;
+    this.description = description;
+    this.published = published;
+  }
+
+  public long getById(){
+    return id;
+  }
+
+  // TITLE
+  public String getByTitle(){
+    return name;
+  }
+
+  public String setName(String name){
+    this.name = name;
+  }
+  //END TITLE
+
+  // DESCRIPTION
+  public String getByDescription(){
+    return description;
+  }
+
+  public String setDescription(String description){
+    this.description = description;
+  }
+  //END DESCRIPTION
+
+  //PUBLISHED
+  public boolean getPublished(){
+    return published;
+  }
+  public boolean setPublished(boolean published){
+    this.published = published;
+  }
+  //END PUBLISHED
+
 }
