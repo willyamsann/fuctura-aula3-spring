@@ -79,4 +79,25 @@ public class ProjetoController {
     }
   }
 
+  @PutMapping("/projetos/{id}")
+  public ResponseEntity<Projeto> updateProjeto(@PathVariable("id") long id, @RequestBody Projeto obj)
+  {
+    try{
+    		Optional<Projeto> _obj = projetoRepository.findById(id);
+        if(_obj.isPresent()){
+          Projeto _projeto = _obj.get();  
+          _projeto.setName(obj.getByTitle());
+          _projeto.setDescription(obj.getByDescription());
+          _projeto.setPublished(obj.getPublished());
+          return new ResponseEntity<>(projetoRepository.save(_projeto), HttpStatus.OK);
+        }else{
+			    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+
+    }catch(Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      
+    }
+  }
 }
