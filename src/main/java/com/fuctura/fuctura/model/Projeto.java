@@ -67,4 +67,9 @@ public class Projeto {
   }
   //END PUBLISHED
 
+  @Override
+  public String toString(){
+    return "Projeto Fuctura id: " + id + ", name: " + name + ", published: " 
+              + published + ", description: " + description;
+  }
 }
