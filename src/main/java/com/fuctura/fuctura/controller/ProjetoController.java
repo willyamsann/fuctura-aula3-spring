@@ -100,4 +100,33 @@ public class ProjetoController {
       
     }
   }
+
+  @DeleteMapping("/projetos/{id}")
+  public ResponseEntity<HttpStatus> deleteById(@PathVariable("id") long id){
+    try{
+        Optional<Projeto> _obj = projetoRepository.findById(id);
+        if(_obj.isPresent()){
+          projetoRepository.deleteById(id);
+          return new ResponseEntity<>(HttpStatus.OK);
+
+        }else{
+			    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+        }
+    }
+    catch(Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      
+    }
+  }
+
+  @DeleteMapping("/projetos")
+  public ResponseEntity<HttpStatus> deleteAll(){
+    try{
+      projetoRepository.deleteAll();
+      return new ResponseEntity<>(null, HttpStatus.OK);
+    }catch(Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
 }
