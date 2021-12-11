@@ -43,7 +43,7 @@ public class Projeto {
     return name;
   }
 
-  public String setName(String name){
+  public void setName(String name){
     this.name = name;
   }
   //END TITLE
@@ -53,7 +53,7 @@ public class Projeto {
     return description;
   }
 
-  public String setDescription(String description){
+  public void setDescription(String description){
     this.description = description;
   }
   //END DESCRIPTION
@@ -62,7 +62,7 @@ public class Projeto {
   public boolean getPublished(){
     return published;
   }
-  public boolean setPublished(boolean published){
+  public void setPublished(boolean published){
     this.published = published;
   }
   //END PUBLISHED
