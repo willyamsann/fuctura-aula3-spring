@@ -52,5 +52,31 @@ public class ProjetoController {
     }
   }
 
+  @GetMapping("/projetos/{id}")
+  public ResponseEntity<Projeto> getById(@PathVariable("id") long id){
+    try{
+      Optional<Projeto> projeto = projetoRepository.findById(id);
+
+      if(projeto.IsPresent()){
+        return new ResponseEntity<>(projeto.get(), HttpStatus.OK);
+      }else{
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+
+    }catch(Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+      
+    }   
+  }
   
+  @PostMapping("/projetos")
+  public ResponseEntity<Projeto> createProjeto(@RequestBody Projeto obj){
+    try{
+      Projeto _obj = projetoRepository.save(new Projeto(obj.getByTitle(),obj.getByDescription(), false));
+      return new ResponseEntity<>(_obj,HttpStatus.OK);
+    }catch(Exception e){
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
 }
