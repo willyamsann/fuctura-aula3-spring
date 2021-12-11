@@ -55,10 +55,10 @@ public class ProjetoController {
   @GetMapping("/projetos/{id}")
   public ResponseEntity<Projeto> getById(@PathVariable("id") long id){
     try{
-      Optional<Projeto> projeto = projetoRepository.findById(id);
+      Optional<Projeto> _projeto = projetoRepository.findById(id);
 
-      if(projeto.IsPresent()){
-        return new ResponseEntity<>(projeto.get(), HttpStatus.OK);
+      if(_projeto.isPresent()){
+        return new ResponseEntity<>(_projeto.get(), HttpStatus.OK);
       }else{
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
       }
