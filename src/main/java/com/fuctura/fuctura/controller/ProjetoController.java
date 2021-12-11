@@ -129,4 +129,19 @@ public class ProjetoController {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
+
+  @GetMapping("/projetos/published")
+  public ResponseEntity<List<Projeto>> getPublisheds(){
+      try{
+        List<Projeto> _projetos = projetoRepository.findByPublished(true);
+        if(_projetos.isEmpty())
+        {
+          return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }else{
+          return new ResponseEntity<>(_projetos,HttpStatus.OK);
+        }
+      }catch(Exception e){
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);  
+      }
+  }
 }
