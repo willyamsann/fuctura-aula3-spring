@@ -9,7 +9,7 @@ import javax.persistence.Id; //Id HashKey - chave primaria
 import javax.persistence.Table; //Nome da tabela
 
 @Entity
-@Table(name = "Projetos")
+@Table(name = "ProjetosNewOne")
 public class Projeto {
 
   @Id
@@ -17,20 +17,24 @@ public class Projeto {
   private long id; //
 
   
-  @Column(name = "name")
-  private String name; //
+  @Column(name = "tipo")
+  private String tipo; //
 
-  @Column(name = "description")
-  private String description; //
+  @Column(name = "data")
+  private String data; //
+
+    @Column(name = "valor")
+  private String valor; //
   
   @Column(name = "published")
   private boolean published;
 
   public Projeto() {}
 
-  public Projeto(String name, String description, boolean published){
-    this.name = name;
-    this.description = description;
+  public Projeto(String tipo, String data, String valor, boolean published){
+    this.tipo = tipo;
+    this.data = data;
+    this.valor = valor;
     this.published = published;
   }
 
@@ -40,21 +44,29 @@ public class Projeto {
 
   // TITLE
   public String getByTitle(){
-    return name;
+    return tipo;
   }
 
   public void setName(String name){
-    this.name = name;
+    this.tipo = tipo;
+  }
+
+    public String getByValor(){
+    return tipo;
+  }
+
+  public void setValor(String valor){
+    this.valor = valor;
   }
   //END TITLE
 
   // DESCRIPTION
   public String getByDescription(){
-    return description;
+    return data;
   }
 
   public void setDescription(String description){
-    this.description = description;
+    this.data = data;
   }
   //END DESCRIPTION
 
@@ -70,7 +82,7 @@ public class Projeto {
 
   @Override
   public String toString(){
-    return "Projeto Fuctura id: " + id + ", name: " + name + ", published: " 
-              + published + ", description: " + description;
+    return "Projeto Fuctura id: " + id + ", name: " + tipo + ", published: " 
+              + published + ", description: " + data;
   }
 }

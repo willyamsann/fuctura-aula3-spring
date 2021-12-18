@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fuctura.fuctura.repository.ProjetoRepository;
 import com.fuctura.fuctura.model.Projeto;
 
-@CrossOrigin(origins = "http://localhost:8081" )
+@CrossOrigin(origins = "http://localhost:4200" )
 @RestController
-@RequestMapping("/api/projeto")
+@RequestMapping("/api")
 public class ProjetoController {
   
   @Autowired
@@ -38,7 +38,7 @@ public class ProjetoController {
       if(name == null){
         projetoRepository.findAll().forEach(projetos::add);
       }else{
-        projetoRepository.findByName(name).forEach(projetos::add);
+        projetoRepository.findByTipo(name).forEach(projetos::add);
       }
 
       if(projetos.isEmpty()){
@@ -72,7 +72,7 @@ public class ProjetoController {
   @PostMapping("/projetos")
   public ResponseEntity<Projeto> createProjeto(@RequestBody Projeto obj){
     try{
-      Projeto _obj = projetoRepository.save(new Projeto(obj.getByTitle(),obj.getByDescription(), false));
+      Projeto _obj = projetoRepository.save(new Projeto(obj.getByTitle(),obj.getByDescription(), obj.getByValor(), false));
       return new ResponseEntity<>(_obj,HttpStatus.OK);
     }catch(Exception e){
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
